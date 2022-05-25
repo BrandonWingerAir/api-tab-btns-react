@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+}
+
+.App {
+  font-family: 'Montserrat', sans-serif;
+  background: #feffff;
+  color: #202930;
+  margin-top: 15vh;
+}
+
+.btnIcon {
+  width: 140px;
+  height: 140px;
+  border : 2px solid #000001;
+  border-radius: 25px;
+  padding: 6px;
+}
+
+.btnIcon div {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 20px;
+}
+
+.btnIcon span {
+  color: #fff;
+  opacity: 30%;
+  font-size: 2.4rem;
+  font-weight: 700;
+  position: absolute;
+  bottom: 10px;
+  left: 12.5%;
+}
+
+#btn1 {
+  grid-row: 1 / 3;
+  display: block;
+  margin-top: 35px;
+  margin-left: 35px;
+}
+
+#btn2 {
+  grid-column: 3 / 8;
+  grid-row: 1 / 2;
+}
+
+#btn3 {
+  grid-column: 3 / 8;
+  grid-row: 3 / 2;
+}
+
+#btn1 .btnIcon {
+  width: 200px;
+  height: 200px;
+}
+
+#btn1 .btnIcon span {
+  font-size: 4rem;
+}
+
+#btn1 .btnIcon div {
+  background-color: #00a653;
+}
+
+#btn2 .btnIcon div {
+  background-color: #fe7fc3;
+}
+
+#btn3 .btnIcon div {
+  background-color: #046dff;
+}
+
+.btnText ul {
+  font-size: 2rem;
+  font-weight: 500;
+  padding-left: 0;
+  width: 320px;
+  margin-top: 20px;
+  hyphens: auto;
+  position: relative;
+  left: 15px;
+  list-style: none;
+}
+
+.btnText ul li::before {
+  content: "\2022";
+  color: #96a1b3;
+  font-weight: bold;
+  display: inline-block; 
+  width: 2rem;
+  margin-left: -2rem;
+  position: relative;
+  top: .5rem;
+  font-size: 4rem;
+}
+
+#btn1 ul {
+  left: 30px;
+  top: 10px;
+}
+
+#btn2 .btnText, #btn3 .btnText {
+  margin-left: 50px;
+}
+
+#panelContainer {
+  padding: 0 35px;
+}
