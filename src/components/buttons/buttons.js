@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styles from './buttons.module.css';
-import { useState } from 'react' 
+import { ActiveBtnContext } from '../../contexts/activeBtnContext';
 
 export default function BtnContainer({ buttons, OnChange }) {
-    const [ActiveBtn, setActiveBtn] = useState('');
+    const {activeBtn, setActiveBtn} = useContext(ActiveBtnContext);
 
     function onClick(btn) {
         OnChange(btn)
         setActiveBtn(btn.id);
     }
+
+    useEffect(() => {
+        if (activeBtn !== '') {
+          setActiveBtn(JSON.parse(activeBtn));
+        }
+    }, []);
+
+    useEffect(() => {
+        window.localStorage.setItem('ACTIVE_BUTTON', JSON.stringify(activeBtn));
+    }, [activeBtn]);
 
     return <div className={styles.container}>
         {buttons.map((btn, btnKey) => {
@@ -16,7 +26,7 @@ export default function BtnContainer({ buttons, OnChange }) {
                         key={btnKey}
                         onClick={() => onClick(btn)}
                         id={"btn" + btn.id}
-                        className={styles.btn + " " + (ActiveBtn === btn.id ? styles.active : "")}
+                        className={styles.btn + " " + (activeBtn === btn.id ? styles.active : "")}
                     >
                         <div className='btnIcon'>
                             <div>
