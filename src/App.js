@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { Tabs, Tab, TabPanel } from './components/tabs/tabs';
 import BtnContainer from './components/buttons/buttons';
 import "./App.css";
@@ -28,10 +29,24 @@ let btnValues = [
 ];
 
 export default function App() {
+  const [appState, setAppState] = useState({
+    loading: true,
+    tabs: {}
+  });
+
   const activeBtnStored = localStorage.getItem('ACTIVE_BUTTON') || '';
 
-  const [activeTab, setActiveTab] = useState(1);
+  const [activeTab, setActiveTab] = useState('fonts_a');
   const [activeBtn, setActiveBtn] = useState(activeBtnStored);
+
+  useEffect(() => {
+    setAppState({ loading: true });
+    const apiUrl = 'http://json.ffwagency.md/tabs';
+    axios.get(apiUrl).then((tabs) => {
+      const allTabs = tabs.data;
+      setAppState({ loading: false, tabs: allTabs });
+    });
+  }, [setAppState]);
 
   const handleChange = (e, value) => {
     setActiveTab(value);
@@ -43,27 +58,29 @@ export default function App() {
 
   return (
     <div className="App">
-      <ActiveBtnContext.Provider value={{ activeBtn, setActiveBtn }}>
-        <TabsContainer>
-          <TabsTitle>Please select one font</TabsTitle>
-          <Tabs selectedTab={activeTab} onChange={handleChange}>
-            <Tab label="MY FONTS" value={1}></Tab>
-            <Tab label="BUY FONTS" value={2}></Tab>
-          </Tabs>
-        </TabsContainer>
-        <div>
-          <TabPanel value={activeTab} selectedIndex={1}>
-              <BtnContainer buttons={btnValues} OnChange={BtnUpdate} />
-          </TabPanel>
-          <TabPanel value={activeTab} selectedIndex={2}>
-            <div id='panelContainer'>
-              <p>
-                Donec sodales sagittis magna. Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis venenatis ante odio sit amet eros. Mauris sollicitudin fermentum libero. Vestibulum fringilla pede sit amet augue. Donec vitae orci sed dolor rutrum auctor.
-              </p>
-            </div>
-          </TabPanel>
-        </div>
-      </ActiveBtnContext.Provider>
+      { !appState.loading && (
+        <ActiveBtnContext.Provider value={{ activeBtn, setActiveBtn }}>
+          <TabsContainer>
+            <TabsTitle>Please select one font</TabsTitle>
+            <Tabs selectedTab={activeTab} onChange={handleChange}>
+              <Tab label={appState.tabs[0].label} value={appState.tabs[0].content_endpoint}></Tab>
+              <Tab label={appState.tabs[1].label} value={appState.tabs[1].content_endpoint}></Tab>
+            </Tabs>
+          </TabsContainer>
+          <div>
+            <TabPanel value={activeTab} selectedIndex="fonts_a">
+                <BtnContainer buttons={btnValues} OnChange={BtnUpdate} />
+            </TabPanel>
+            <TabPanel value={activeTab} selectedIndex="fonts_b">
+              <div id='panelContainer'>
+                <p>
+                  Donec sodales sagittis magna. Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis venenatis ante odio sit amet eros. Mauris sollicitudin fermentum libero. Vestibulum fringilla pede sit amet augue. Donec vitae orci sed dolor rutrum auctor.
+                </p>
+              </div>
+            </TabPanel>
+          </div>
+        </ActiveBtnContext.Provider>
+      )}
     </div>
   );
 }

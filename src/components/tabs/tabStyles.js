@@ -14,6 +14,7 @@ export const StyledTab = styled.button`
     padding: 20px 0;
     margin-top: 20px;
     text-align: center;
+    text-transform: uppercase;
     font-size: 1.3rem;
     font-weight: 600;
     letter-spacing: 1px;
