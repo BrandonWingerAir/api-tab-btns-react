@@ -22,38 +22,59 @@ const TabsTitle = styled.h1`
   font-weight: 600;
 `;
 
-let btnValues = [
-  {id: 1, value: 'green', code: 'M', desc: 'Merriweather project is led by Sorkin Type' },
-  {id: 2, value: 'pink', code: 'R', desc: 'Roboto doesn\'t compromise, allowing letters' },
-  {id: 3, value: 'blue', code: 'NS', desc: 'Noto Sans covers over 30 scripts' },
-];
-
 export default function App() {
   const [appState, setAppState] = useState({
     loading: true,
     tabs: {}
   });
 
+
+  const [loadingTabData, setLoadingTabData] = useState(true);
+
   const activeBtnStored = localStorage.getItem('ACTIVE_BUTTON') || '';
 
   const [activeTab, setActiveTab] = useState('fonts_a');
   const [activeBtn, setActiveBtn] = useState(activeBtnStored);
 
+  const [fontButtons, setFontButtons] = useState([]);
+  const [fontCopywrite, setFontCopywrite] = useState();
+  
   useEffect(() => {
     setAppState({ loading: true });
+    
     const apiUrl = 'http://json.ffwagency.md/tabs';
+    
     axios.get(apiUrl).then((tabs) => {
       const allTabs = tabs.data;
       setAppState({ loading: false, tabs: allTabs });
     });
   }, [setAppState]);
 
+  useEffect(() => {
+    setLoadingTabData(true);
+      if (activeTab === 'fonts_a') {  
+        const apiContentUrl = 'http://json.ffwagency.md/fonts_a';
+        
+        axios.get(apiContentUrl).then((btnValues) => {
+          const allBtns = btnValues;
+          setFontButtons(allBtns.data.content);
+          setLoadingTabData(false);
+        });
+      } else if (activeTab === 'fonts_b') {
+        const apiContentUrl = 'http://json.ffwagency.md/fonts_b';
+
+        axios.get(apiContentUrl).then((apiData) => {
+          const fontText = apiData;
+          setFontCopywrite(fontText.data.content);
+          setLoadingTabData(false);
+        });
+      } else {
+        console.log('Error: Invalid endpoint.');
+      }
+  }, [activeTab]);
+  
   const handleChange = (e, value) => {
     setActiveTab(value);
-  }
-
-  function BtnUpdate(updatedBtn) {
-    // console.log(updatedBtn);
   }
 
   return (
@@ -67,18 +88,23 @@ export default function App() {
               <Tab label={appState.tabs[1].label} value={appState.tabs[1].content_endpoint}></Tab>
             </Tabs>
           </TabsContainer>
-          <div>
+          { !loadingTabData && (
+            <div>
+            {/* My Fonts */}
             <TabPanel value={activeTab} selectedIndex="fonts_a">
-                <BtnContainer buttons={btnValues} OnChange={BtnUpdate} />
+              <BtnContainer buttons={fontButtons}/>
             </TabPanel>
+
+            {/* Buy Fonts */}
             <TabPanel value={activeTab} selectedIndex="fonts_b">
               <div id='panelContainer'>
-                <p>
-                  Donec sodales sagittis magna. Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis venenatis ante odio sit amet eros. Mauris sollicitudin fermentum libero. Vestibulum fringilla pede sit amet augue. Donec vitae orci sed dolor rutrum auctor.
+                <p className='panelText'>
+                  {fontCopywrite}
                 </p>
               </div>
             </TabPanel>
           </div>
+          )}
         </ActiveBtnContext.Provider>
       )}
     </div>

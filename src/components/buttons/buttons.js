@@ -2,11 +2,10 @@ import React, { useState, useContext, useEffect } from 'react';
 import styles from './buttons.module.css';
 import { ActiveBtnContext } from '../../contexts/activeBtnContext';
 
-export default function BtnContainer({ buttons, OnChange }) {
+export default function BtnContainer({ buttons }) {
     const {activeBtn, setActiveBtn} = useContext(ActiveBtnContext);
-
+    
     function onClick(btn) {
-        OnChange(btn)
         setActiveBtn(btn.id);
     }
 
@@ -14,7 +13,7 @@ export default function BtnContainer({ buttons, OnChange }) {
         if (activeBtn !== '') {
           setActiveBtn(JSON.parse(activeBtn));
         }
-    }, []);
+    }, [setActiveBtn, activeBtn]);
 
     useEffect(() => {
         window.localStorage.setItem('ACTIVE_BUTTON', JSON.stringify(activeBtn));
@@ -30,13 +29,13 @@ export default function BtnContainer({ buttons, OnChange }) {
                     >
                         <div className='btnIcon'>
                             <div>
-                                <span>{btn.code}</span>
+                                <span>{btn.abbr}</span>
                             </div>
                         </div>
                         <div className='btnText'>
                             <ul>
                                 <li>
-                                    {btn.desc}
+                                    {btn.label}
                                 </li>
                             </ul>
                         </div>
