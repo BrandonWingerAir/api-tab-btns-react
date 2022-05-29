@@ -7,7 +7,7 @@ export const TabHeaderContainer = styled.div`
     justify-content: center;
     margin-right: 10px;
 
-    @media only screen and (max-width: 900px) {
+    @media only screen and (max-width: 1200px) {
         margin-right: 0;
     }
 `;
@@ -17,9 +17,8 @@ export const StyledTab = styled.button`
     width: 100%;
     padding: 20px 0;
     margin-top: 20px;
-    text-align: center;
     text-transform: uppercase;
-    font-size: 1.3rem;
+    font-size: 1.29rem;
     font-weight: 600;
     letter-spacing: 1px;
     background-color: transparent;
@@ -32,8 +31,9 @@ export const StyledTab = styled.button`
     }
     ${(p) => !p.active && p.inactiveStyle}
 
-    @media only screen and (max-width: 900px) {
+    @media only screen and (max-width: 1200px) {
         font-size: 1.15rem;
+        margin-top: 0;
     }
 `;
 
@@ -49,14 +49,15 @@ export const StyledTabPanel = styled.div`
     border : 4px solid #becadf;
     border-radius: 15px;
 
-    @media only screen and (max-width: 900px) {
-        width: 575px; 
+    @media only screen and (max-width: 1200px) {
+        width: 575px;
+        padding: 0 0 10px 0;
     }
 
     @media only screen and (max-width: 600px) {
-        width: 335px; 
+        width: 315px; 
         margin-bottom: 25px;
-        padding: 20px 5px 10px 15px;
+        padding: 5px 5px 10px 10px;
     }
 `;
 

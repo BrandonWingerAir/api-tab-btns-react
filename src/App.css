@@ -66,18 +66,6 @@ body {
   font-size: 4rem;
 }
 
-#btn112 .btnIcon div {
-  background-color: #00a653;
-}
-
-#btn113 .btnIcon div {
-  background-color: #fe7fc3;
-}
-
-#btn114 .btnIcon div {
-  background-color: #046dff;
-}
-
 .btnText {
   font-size: 2rem;
   font-weight: 500;
@@ -124,23 +112,24 @@ body {
   hyphens: auto;
 }
 
-@media only screen and (max-width: 900px) {
-
-  /* TODO: Fix, currently overwritten by styled component */
-  /* .tab-fonts_a {
+@media only screen and (max-width: 1200px) {
+  .tab-fonts_a {
     text-align: left;
+    margin-left: 20px;
   }
   
   .tab-fonts_b {
     text-align: right;
-  } */
+    margin-right: 20px;
+  }
 
   #btn112 {
     grid-column: 1 / span 2;
     grid-row: 1 / 1;
     margin-top: 0;
     margin-left: 0;
-    height: 185px;
+    height: 220px;
+    display: flex;
   }
   
   #btn113 {
@@ -162,7 +151,6 @@ body {
   #btn112 .btnIcon {
     width: 90px;
     height: 90px;
-    display: inline-block;
   }
 
   .btnIcon span {
@@ -180,9 +168,22 @@ body {
   }
   
   #btn112 .btnText {
-    display: inline-block;
     margin-left: 20px;
     width: 450px;
+  }
+  
+  .btnText ul {
+    margin-top: 0;
+  }
+  
+  #btn112 .btnText ul {
+    position: relative;
+    top: -15px;
+  }
+
+  .btnText ul li::before {
+    top: .65rem;
+    font-size: 3.5rem;
   }
 }
 
@@ -191,11 +192,20 @@ body {
     margin-top: 0;
   }
 
+  .tab-fonts_a {
+    margin-left: 15px;
+  }
+  
+  .tab-fonts_b {
+    margin-right: 15px;
+  }
+
   #btn112 {
+    grid-column: 1 / 1;
     grid-row: 1 / 1;
     margin-top: 0;
     margin-left: 0;
-    height: 185px;
+    height: 170px;
   }
   
   #btn113 {
@@ -209,9 +219,9 @@ body {
   }
 
   .btnIcon {
-    width: 65px;
-    height: 65px;
-    margin-left: 10px;
+    width: 55px;
+    height: 55px;
+    margin-left: 0;
   }
 
   #btn112 .btnIcon {
@@ -220,7 +230,7 @@ body {
   }
 
   .btnIcon span {
-    font-size: 1.6rem;
+    font-size: 1.25rem;
   }
 
   #btn112 .btnIcon span {
@@ -228,23 +238,31 @@ body {
   }
 
   .btnText {
-    font-size: 1rem;
+    font-size: .75rem;
+    margin-left: 15px;
+    display: inline-block;
+  }
+
+  #btn112 .btnText {
+    font-size: .9rem;
+    margin-left: 0;
   }
 
   .btnText ul {
-    width: 250px;
+    width: 200px;
     margin-top: 0;
     left: 15px;
   }
 
-  #btn112 ul {
-    left: 20px;
+  #btn112 .btnText ul {
+    top: 0;
+    width: 250px;
   }
 
   .btnText ul li::before {
     font-size: 2rem;
-    width: 1.65rem;
-    margin-left: -1.65rem;
+    width: 1.15rem;
+    margin-left: -1.15rem;
   }
 
   #panelContainer {

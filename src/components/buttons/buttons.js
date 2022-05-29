@@ -28,7 +28,7 @@ export default function BtnContainer({ buttons }) {
                         className={styles.btn + " " + (activeBtn === btn.id ? styles.active : "")}
                     >
                         <div className='btnIcon'>
-                            <div>
+                            <div style={{backgroundColor: btn.color}}>
                                 <span>{btn.abbr}</span>
                             </div>
                         </div>

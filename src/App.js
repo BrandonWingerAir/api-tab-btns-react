@@ -13,7 +13,7 @@ const TabsContainer = styled.div`
   margin: 0 auto;
   justify-content: space-between;
   
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 1200px) {
     width: 575px;
     max-width: 100vw;
     display: block;
@@ -33,7 +33,7 @@ const TabsTitle = styled.h1`
   font-size: 3.24rem;
   font-weight: 600;
 
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 1200px) {
     font-size: 2rem;
   }
 
