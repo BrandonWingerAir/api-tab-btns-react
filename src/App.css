@@ -22,6 +22,11 @@ body {
   padding: 6px;
 }
 
+#btn112 .btnIcon {
+  width: 200px;
+  height: 200px;
+}
+
 .btnIcon div {
   width: 100%;
   height: 100%;
@@ -40,6 +45,7 @@ body {
 }
 
 #btn112 {
+  grid-column: 1 / span 3;
   grid-row: 1 / 3;
   display: block;
   margin-top: 35px;
@@ -47,18 +53,13 @@ body {
 }
 
 #btn113 {
-  grid-column: 3 / 8;
+  grid-column: 4 / 8;
   grid-row: 1 / 2;
 }
 
 #btn114 {
-  grid-column: 3 / 8;
+  grid-column: 4 / 8;
   grid-row: 3 / 2;
-}
-
-#btn112 .btnIcon {
-  width: 200px;
-  height: 200px;
 }
 
 #btn112 .btnIcon span {
@@ -77,13 +78,17 @@ body {
   background-color: #046dff;
 }
 
-.btnText ul {
+.btnText {
   font-size: 2rem;
   font-weight: 500;
-  padding-left: 0;
-  width: 320px;
-  margin-top: 20px;
   hyphens: auto;
+  max-width: 350px;
+  margin-left: 50px;
+}
+
+.btnText ul {
+  padding-left: 0;
+  margin-top: 20px;
   position: relative;
   left: 15px;
   list-style: none;
@@ -101,13 +106,13 @@ body {
   font-size: 4rem;
 }
 
+#btn112 .btnText {
+  margin-left: 0;
+}
+
 #btn112 ul {
   left: 30px;
   top: 10px;
-}
-
-#btn113 .btnText, #btn114 .btnText {
-  margin-left: 50px;
 }
 
 #panelContainer {
@@ -115,5 +120,139 @@ body {
 }
 
 .panelText {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  hyphens: auto;
+}
+
+@media only screen and (max-width: 900px) {
+
+  /* TODO: Fix, currently overwritten by styled component */
+  /* .tab-fonts_a {
+    text-align: left;
+  }
+  
+  .tab-fonts_b {
+    text-align: right;
+  } */
+
+  #btn112 {
+    grid-column: 1 / span 2;
+    grid-row: 1 / 1;
+    margin-top: 0;
+    margin-left: 0;
+    height: 185px;
+  }
+  
+  #btn113 {
+    grid-column: 1 / 1;
+    grid-row: 2 / 2;
+  }
+  
+  #btn114 {
+    grid-column: 2;
+    grid-row: 2 / 2;
+  }
+
+  .btnIcon {
+    width: 70px;
+    height: 70px;
+    margin-left: 10px;
+  }
+
+  #btn112 .btnIcon {
+    width: 90px;
+    height: 90px;
+    display: inline-block;
+  }
+
+  .btnIcon span {
+    font-size: 1.4rem;
+  }
+
+  #btn112 .btnIcon span {
+    font-size: 2rem;
+  }
+
+  .btnText {
+    font-size: 1rem;
+    margin-left: 20px;
+    width: 200px;
+  }
+  
+  #btn112 .btnText {
+    display: inline-block;
+    margin-left: 20px;
+    width: 450px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .App {
+    margin-top: 0;
+  }
+
+  #btn112 {
+    grid-row: 1 / 1;
+    margin-top: 0;
+    margin-left: 0;
+    height: 185px;
+  }
+  
+  #btn113 {
+    grid-column: 1 / 1;
+    grid-row: 2 / 2;
+  }
+  
+  #btn114 {
+    grid-column: 1 / 1;
+    grid-row: 3 / 3;
+  }
+
+  .btnIcon {
+    width: 65px;
+    height: 65px;
+    margin-left: 10px;
+  }
+
+  #btn112 .btnIcon {
+    width: 85px;
+    height: 85px;
+  }
+
+  .btnIcon span {
+    font-size: 1.6rem;
+  }
+
+  #btn112 .btnIcon span {
+    font-size: 2.2rem;
+  }
+
+  .btnText {
+    font-size: 1rem;
+  }
+
+  .btnText ul {
+    width: 250px;
+    margin-top: 0;
+    left: 15px;
+  }
+
+  #btn112 ul {
+    left: 20px;
+  }
+
+  .btnText ul li::before {
+    font-size: 2rem;
+    width: 1.65rem;
+    margin-left: -1.65rem;
+  }
+
+  #panelContainer {
+    padding: 0 25px;
+  }
+  
+  .panelText {
+    margin-bottom: 35px;
+    font-size: 1rem;
+  }
 }

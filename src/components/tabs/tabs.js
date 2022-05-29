@@ -7,12 +7,13 @@ import {
     TabsNav
 } from './tabStyles';
 
-export const Tab = ({label, active, onClick}) => {
+export const Tab = ({label, active, onClick, value}) => {
     return (
         <StyledTab
             role="tab"
             active={active}
             onClick={onClick}
+            className={"tab-" + value}
         >
             {label}
         </StyledTab>

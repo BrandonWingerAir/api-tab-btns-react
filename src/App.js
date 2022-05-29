@@ -12,6 +12,18 @@ const TabsContainer = styled.div`
   width: 1175px;
   margin: 0 auto;
   justify-content: space-between;
+  
+  @media only screen and (max-width: 900px) {
+    width: 575px;
+    max-width: 100vw;
+    display: block;
+  }
+
+  @media only screen and (max-width: 600px) {
+    width: 300px;
+    max-width: 100vw;
+    display: block;
+  }
 `;
 
 const TabsTitle = styled.h1`
@@ -20,6 +32,15 @@ const TabsTitle = styled.h1`
   text-align: left;
   font-size: 3.24rem;
   font-weight: 600;
+
+  @media only screen and (max-width: 900px) {
+    font-size: 2rem;
+  }
+
+  @media only screen and (max-width: 600px) {
+    margin-left: 0;
+    font-size: 1.5rem;
+  }
 `;
 
 export default function App() {
@@ -39,39 +60,101 @@ export default function App() {
   const [fontButtons, setFontButtons] = useState([]);
   const [fontCopywrite, setFontCopywrite] = useState();
   
+  // Development Configuration:
   useEffect(() => {
-    setAppState({ loading: true });
-    
-    const apiUrl = 'http://json.ffwagency.md/tabs';
-    
-    axios.get(apiUrl).then((tabs) => {
-      const allTabs = tabs.data;
+      const allTabs = [{
+            "id": 101,
+            "label": "My Fonts",
+            "content_endpoint": "fonts_a"
+          },
+          {
+            "id": 102,
+            "label": "Buy Fonts",
+            "content_endpoint": "fonts_b"
+      }];
+
       setAppState({ loading: false, tabs: allTabs });
-    });
   }, [setAppState]);
 
   useEffect(() => {
     setLoadingTabData(true);
       if (activeTab === 'fonts_a') {  
-        const apiContentUrl = 'http://json.ffwagency.md/fonts_a';
-        
-        axios.get(apiContentUrl).then((btnValues) => {
-          const allBtns = btnValues;
-          setFontButtons(allBtns.data.content);
-          setLoadingTabData(false);
-        });
-      } else if (activeTab === 'fonts_b') {
-        const apiContentUrl = 'http://json.ffwagency.md/fonts_b';
+          const allBtns = {
+            "type": "Font selection",
+            "content": [
+              {
+                "id": 112,
+                "abbr": "M",
+                "color": "#00A653",
+                "color-blind-label": "green",
+                "label": "Merriweather project is led by Sorkin Type"
+              },
+              {
+                "id": 113,
+                "abbr": "R",
+                "color": "#FE7FC3",
+                "color-blind-label": "pink",
+                "label": "Roboto doesn't compromise, allowing letters"
+              },
+              {
+                "id": 114,
+                "abbr": "NS",
+                "color": "#046DFF",
+                "color-blind-label": "blue",
+                "label": "Noto Sans covers over 30 scripts"
+              }
+            ]
+          };
 
-        axios.get(apiContentUrl).then((apiData) => {
-          const fontText = apiData;
-          setFontCopywrite(fontText.data.content);
+          setFontButtons(allBtns.content);
           setLoadingTabData(false);
-        });
+      } else if (activeTab === 'fonts_b') {
+          const fontText = {
+            "type": "Text",
+            "content": "Donec sodales sagittis magna. Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis venenatis ante odio sit amet eros. Mauris sollicitudin fermentum libero. Vestibulum fringilla pede sit amet augue. Donec vitae orci sed dolor rutrum auctor."
+          };
+
+          setFontCopywrite(fontText.content);
+          setLoadingTabData(false);
       } else {
         console.log('Error: Invalid endpoint.');
       }
   }, [activeTab]);
+
+  // Production Configuration:
+  // useEffect(() => {
+  //   setAppState({ loading: true });
+    
+  //   const apiUrl = 'http://json.ffwagency.md/tabs';
+    
+  //   axios.get(apiUrl).then((tabs) => {
+  //     const allTabs = tabs.data;
+  //     setAppState({ loading: false, tabs: allTabs });
+  //   });
+  // }, [setAppState]);
+
+  // useEffect(() => {
+  //   setLoadingTabData(true);
+  //     if (activeTab === 'fonts_a') {  
+  //       const apiContentUrl = 'http://json.ffwagency.md/fonts_a';
+        
+  //       axios.get(apiContentUrl).then((btnValues) => {
+  //         const allBtns = btnValues;
+  //         setFontButtons(allBtns.data.content);
+  //         setLoadingTabData(false);
+  //       });
+  //     } else if (activeTab === 'fonts_b') {
+  //       const apiContentUrl = 'http://json.ffwagency.md/fonts_b';
+
+  //       axios.get(apiContentUrl).then((apiData) => {
+  //         const fontText = apiData;
+  //         setFontCopywrite(fontText.data.content);
+  //         setLoadingTabData(false);
+  //       });
+  //     } else {
+  //       console.log('Error: Invalid endpoint.');
+  //     }
+  // }, [activeTab]);
   
   const handleChange = (e, value) => {
     setActiveTab(value);
@@ -90,12 +173,10 @@ export default function App() {
           </TabsContainer>
           { !loadingTabData && (
             <div>
-            {/* My Fonts */}
             <TabPanel value={activeTab} selectedIndex="fonts_a">
               <BtnContainer buttons={fontButtons}/>
             </TabPanel>
 
-            {/* Buy Fonts */}
             <TabPanel value={activeTab} selectedIndex="fonts_b">
               <div id='panelContainer'>
                 <p className='panelText'>
