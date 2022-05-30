@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styles from './buttons.module.css';
-import { ActiveBtnContext } from '../../contexts/activeBtnContext';
+import { ActiveBtnContext } from '../../../../contexts/activeBtnContext';
 
 export default function BtnContainer({ buttons }) {
     const {activeBtn, setActiveBtn} = useContext(ActiveBtnContext);
@@ -16,7 +16,7 @@ export default function BtnContainer({ buttons }) {
     }, [setActiveBtn, activeBtn]);
 
     useEffect(() => {
-        window.localStorage.setItem('ACTIVE_BUTTON', JSON.stringify(activeBtn));
+        window.localStorage.setItem('USER_FONT', JSON.stringify(activeBtn));
     }, [activeBtn]);
 
     return <div className={styles.container}>
@@ -24,8 +24,7 @@ export default function BtnContainer({ buttons }) {
             return <div 
                         key={btnKey}
                         onClick={() => onClick(btn)}
-                        id={"btn" + btn.id}
-                        className={styles.btn + " " + (activeBtn === btn.id ? styles.active : "")}
+                        className={styles.btn + " " + "btn" + btn.id + " " + (activeBtn === btn.id ? styles.active : "")}
                     >
                         <div className='btnIcon'>
                             <div style={{backgroundColor: btn.color}}>
