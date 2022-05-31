@@ -1,8 +1,17 @@
 import React, { useContext, useEffect } from 'react';
-import styles from './buttons.module.css';
+import {
+    BtnContainer,
+    FontBtn,
+    BtnIcon,
+    BtnIconBg,
+    BtnIconAbbr,
+    BtnText,
+    ListStyle,
+    ListText
+} from './buttonStyles';
 import { ActiveBtnContext } from '../../../../contexts/activeBtnContext';
 
-export default function BtnContainer({ buttons }) {
+export default function Buttons({ buttons }) {
     const {activeBtn, setActiveBtn} = useContext(ActiveBtnContext);
     
     function onClick(btn) {
@@ -16,29 +25,30 @@ export default function BtnContainer({ buttons }) {
     }, [setActiveBtn, activeBtn]);
 
     useEffect(() => {
-        window.localStorage.setItem('USER_FONT', JSON.stringify(activeBtn));
+        window.localStorage.setItem('USER_FONT_ID', JSON.stringify(activeBtn));
     }, [activeBtn]);
 
-    return <div className={styles.container}>
-        {buttons.map((btn, btnKey) => {
-            return <div 
-                        key={btnKey}
+    return <BtnContainer>
+        {buttons.map((btn) => {
+            return <FontBtn 
+                        key={btn.id}
                         onClick={() => onClick(btn)}
-                        className={styles.btn + " " + "btn" + btn.id + " " + (activeBtn === btn.id ? styles.active : "")}
+                        isActive={activeBtn === btn.id ? true : false}
+                        btnId={btn.id}
                     >
-                        <div className='btnIcon'>
-                            <div style={{backgroundColor: btn.color}}>
-                                <span>{btn.abbr}</span>
-                            </div>
-                        </div>
-                        <div className='btnText'>
-                            <ul>
-                                <li>
+                        <BtnIcon btnId={btn.id}>
+                            <BtnIconBg btnColor={btn.color}>
+                                <BtnIconAbbr btnId={btn.id}>{btn.abbr}</BtnIconAbbr>
+                            </BtnIconBg>
+                        </BtnIcon>
+                        <BtnText btnId={btn.id}>
+                            <ListStyle>
+                                <ListText>
                                     {btn.label}
-                                </li>
-                            </ul>
-                        </div>
-            </div>
+                                </ListText>
+                            </ListStyle>
+                        </BtnText>
+            </FontBtn>
         })}
-    </div>;
+    </BtnContainer>;
 }

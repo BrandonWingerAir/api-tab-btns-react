@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import { Tabs, Tab, TabPanel } from './tabs/Tabs';
-import BtnContainer from './tabs/buttons/Buttons';
+import Buttons from './tabs/buttons/Buttons';
 import { ActiveBtnContext } from '../../contexts/activeBtnContext';
 import "./fontSelector.css";
 
@@ -12,7 +11,7 @@ function FontSelector() {
         tabs: {}
       });
 
-    const activeBtnStored = localStorage.getItem('USER_FONT') || '';
+    const activeBtnStored = localStorage.getItem('USER_FONT_ID') || '';
 
     const [activeTab, setActiveTab] = useState('fonts_a');
     const [activeBtn, setActiveBtn] = useState(activeBtnStored);
@@ -174,10 +173,10 @@ function FontSelector() {
                         <div>
                             <TabPanel value={activeTab} selectedIndex="fonts_a">
                                 { !loadingTabData && (
-                                <BtnContainer buttons={fontButtons}/>
+                                    <Buttons buttons={fontButtons}/>
                                 )}
                                 { loadingTabData && (
-                                <p>Loading Data...</p>
+                                    <p>Loading Data...</p>
                                 )}
                             </TabPanel>
 
