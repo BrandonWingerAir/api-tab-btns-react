@@ -13,7 +13,6 @@ export const Tab = ({label, active, onClick, value}) => {
             role="tab"
             active={active}
             onClick={onClick}
-            className={"tab-" + value}
         >
             {label}
         </StyledTab>

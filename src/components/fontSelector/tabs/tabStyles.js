@@ -23,17 +23,37 @@ export const StyledTab = styled.button`
     letter-spacing: 1px;
     background-color: transparent;
     border: none;
-    cursor: ${(p) => (p.disabled ? "default" : "pointer")};
-    ${(p) =>
-        p.active && 
-        css
-            `color: #becadf;`
-    }
-    ${(p) => !p.active && p.inactiveStyle}
+    cursor: pointer;
+
+    ${(p) => p.active && css `
+        color: #becadf;
+        cursor: default;
+    `};
 
     @media only screen and (max-width: 1200px) {
         font-size: 1.15rem;
         margin-top: 0;
+
+        &:first-child {
+            text-align: left;
+            margin-left: 20px;
+        }
+
+        &:last-child {
+            text-align: right;
+            margin-right: 20px;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        &:first-child {
+            margin-left: 15px;
+        }
+
+        &:last-child {
+            text-align: right;
+            margin-right: 15px;
+        }
     }
 `;
 
@@ -50,13 +70,11 @@ export const StyledTabPanel = styled.div`
 
     @media only screen and (max-width: 1200px) {
         width: 575px;
-        padding: 0 0 10px 0;
     }
 
     @media only screen and (max-width: 600px) {
         width: 315px; 
         margin-bottom: 25px;
-        padding: 5px 5px 10px 10px;
     }
 `;
 

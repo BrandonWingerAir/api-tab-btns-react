@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { Tabs, Tab, TabPanel } from './tabs/Tabs';
+import {
+    FontSelectContainer, 
+    FontSelectorContent, 
+    BuyFontContainer, 
+    BuyFontText,
+    TabsContainer,
+    TabsTitle
+} from './fontSelectorStyles';
 import Buttons from './tabs/buttons/Buttons';
 import { ActiveBtnContext } from '../../contexts/activeBtnContext';
-import "./fontSelector.css";
 
 function FontSelector() {
     const [appState, setAppState] = useState({
@@ -20,43 +26,6 @@ function FontSelector() {
 
     const [fontButtons, setFontButtons] = useState([]);
     const [buyFontText, setBuyFontText] = useState();
-
-    const TabsContainer = styled.div`
-        display: flex;
-        padding: 2px;
-        width: 1175px;
-        margin: 0 auto;
-        justify-content: space-between;
-        
-        @media only screen and (max-width: 1200px) {
-            width: 575px;
-            max-width: 100vw;
-            display: block;
-        }
-
-        @media only screen and (max-width: 600px) {
-            width: 300px;
-            max-width: 100vw;
-            display: block;
-        }
-        `;
-
-        const TabsTitle = styled.h1`
-        margin-left: 10px;
-        flex-grow: 7;
-        text-align: left;
-        font-size: 3.24rem;
-        font-weight: 600;
-
-        @media only screen and (max-width: 1200px) {
-            font-size: 2rem;
-        }
-
-        @media only screen and (max-width: 600px) {
-            margin-left: 0;
-            font-size: 1.5rem;
-        }
-    `;
 
     // Development Configuration:
     useEffect(() => {
@@ -100,49 +69,7 @@ function FontSelector() {
                 "color": "#046DFF",
                 "color-blind-label": "blue",
                 "label": "Noto Sans covers over 30 scripts"
-                },
-                {
-                "id": 116,
-                "abbr": "M",
-                "color": "orange",
-                "color-blind-label": "green",
-                "label": "Merriweather project is led by Sorkin Type"
-                },
-                {
-                "id": 117,
-                "abbr": "R",
-                "color": "navy",
-                "color-blind-label": "pink",
-                "label": "Roboto doesn't compromise, allowing letters"
-                },
-                {
-                "id": 118,
-                "abbr": "NS",
-                "color": "purple",
-                "color-blind-label": "blue",
-                "label": "Noto Sans covers over 30 scripts"
-                },
-                {
-                "id": 116,
-                "abbr": "M",
-                "color": "pink",
-                "color-blind-label": "green",
-                "label": "Merriweather project is led by Sorkin Type"
-                },
-                {
-                "id": 117,
-                "abbr": "R",
-                "color": "brown",
-                "color-blind-label": "pink",
-                "label": "Roboto doesn't compromise, allowing letters"
-                },
-                {
-                "id": 118,
-                "abbr": "NS",
-                "color": "darkgreen",
-                "color-blind-label": "blue",
-                "label": "Noto Sans covers over 30 scripts"
-                },
+                }
             ]
             };
 
@@ -197,12 +124,12 @@ function FontSelector() {
     // }, [activeTab]);
 
     const handleChange = (e, value) => {
-    setActiveTab(value);
+        setActiveTab(value);
     }
 
     return (
-        <div className='fontSelectContainer'>
-            <div className='fontSelector'>
+        <FontSelectContainer>
+            <FontSelectorContent>
                 { !appState.loading && (
                     <ActiveBtnContext.Provider value={{ activeBtn, setActiveBtn }}>
                         <TabsContainer>
@@ -224,14 +151,14 @@ function FontSelector() {
 
                             <TabPanel value={activeTab} selectedIndex="fonts_b">
                                 { !loadingTabData && (
-                                <div id='buyFontContainer'>
-                                    <p className='buyFontText'>
-                                    {buyFontText}
-                                    </p>
-                                </div>
+                                    <BuyFontContainer>
+                                        <BuyFontText>
+                                            {buyFontText}
+                                        </BuyFontText>
+                                    </BuyFontContainer>
                                 )}
                                 { loadingTabData && (
-                                <p>Loading Data...</p>
+                                    <p>Loading Data...</p>
                                 )}
                             </TabPanel>
                         </div>
@@ -240,8 +167,8 @@ function FontSelector() {
                 { appState.loading && (
                     <p>Loading Tabs...</p>
                 )}
-            </div>
-        </div>
+            </FontSelectorContent>
+        </FontSelectContainer>
     )
 }
 
