@@ -1,16 +1,17 @@
 import styled from 'styled-components';
+import { deviceWidth } from '../../responsiveStyles';
 
 export const BtnContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr; 
     border-radius: 10px;
 
-    @media only screen and (max-width: 1200px) {
+    @media ${deviceWidth.mediumMax} {
             grid-template-columns: 1fr 1fr;
             width: 575px;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media ${deviceWidth.smallMax} {
             grid-template-columns: 1fr;
             width: 315px;
             padding: 10px 5px;
@@ -24,13 +25,13 @@ export const BtnIcon = styled.div`
     width: 140px;
     height: 140px;
 
-    @media only screen and (max-width: 1200px) {
+    @media ${deviceWidth.mediumMax} {
         margin-left: 10px;
         width: 70px;
         height: 70px;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media ${deviceWidth.smallMax} {
         margin-left: 0;
         width: 55px;
         height: 55px;
@@ -54,16 +55,74 @@ export const BtnIconAbbr = styled.span`
     bottom: 10px;
     left: 12.5%;
 
-    @media only screen and (max-width: 1200px) {
+    @media ${deviceWidth.mediumMax} {
         font-size: 1.4rem;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media ${deviceWidth.smallMax} {
         font-size: 1.25rem;
     }
 `;
 
-export const FontBtn = styled.div`
+export const BtnDesc = styled.div`
+    letter-spacing: initial;
+    font-weight: 500;
+    hyphens: auto;
+    width: 400px;
+
+    @media ${deviceWidth.mediumMax} {
+        width: 250px;
+    }
+
+    @media ${deviceWidth.smallMax} {
+        width: 200px;
+    }
+`;
+
+export const List = styled.ul`
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+`;
+    
+export const ListItem = styled.li`
+    display: flex;
+    align-items: top;
+
+    &:before {
+        content: "•";
+        color: #96a1b3;
+        font-weight: bold;
+        display: inline-block; 
+        min-width: 55px;
+        max-width: 55px;
+        margin-left: 1.4rem;
+        position: relative;
+        top: -.85rem;
+        font-size: 3rem;
+    }
+
+    @media ${deviceWidth.mediumMax} {
+        &:before {
+            font-size: 3.5rem;
+            width: 3rem;
+        }
+    }
+
+    @media ${deviceWidth.smallMax} {
+        &:before {
+            top: -0.85rem;
+            font-size: 2rem;
+            width: 2rem;
+            margin-left: .5rem;
+        }
+    }
+`;
+
+export const FontBtn = styled.button`
+    background-color: initial;
+    border: initial;
+    text-align: initial;
     display: flex;
     flex-wrap: wrap;
     align-items: top;
@@ -86,7 +145,7 @@ export const FontBtn = styled.div`
 
     opacity: ${props => props.isActive ? "50%" : "initial"};
 
-    @media only screen and (max-width: 1200px) {
+    @media ${deviceWidth.mediumMax} {
         margin-left: 0;
         font-size: 1rem;
         
@@ -105,7 +164,7 @@ export const FontBtn = styled.div`
         }
     }
 
-    @media only screen and (max-width: 600px) {
+    @media ${deviceWidth.smallMax} {
         height: 90px;
         margin-left: 0;
         padding: .5rem 0;
@@ -123,60 +182,6 @@ export const FontBtn = styled.div`
             ${BtnIconAbbr} {
                 font-size: 2.2rem;
             }
-        }
-    }
-`;
-
-export const BtnText = styled.div`
-    letter-spacing: initial;
-    font-weight: 500;
-    hyphens: auto;
-    width: 400px;
-
-    @media only screen and (max-width: 1200px) {
-        width: 250px;
-    }
-
-    @media only screen and (max-width: 600px) {
-        width: 200px;
-    }
-`;
-
-export const List = styled.ul`
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-`;
-    
-export const ListItem = styled.li`
-    display: flex;
-    align-items: top;
-
-    &:before {
-        content: "•";
-        color: #96a1b3;
-        font-weight: bold;
-        display: inline-block; 
-        width: 5.5rem;
-        margin-left: .5rem;
-        position: relative;
-        top: -1.55rem;
-        font-size: 4rem;
-    }
-
-    @media only screen and (max-width: 1200px) {
-        &:before {
-            font-size: 3.5rem;
-            width: 3rem;
-        }
-    }
-
-    @media only screen and (max-width: 600px) {
-        &:before {
-            top: -0.85rem;
-            font-size: 2rem;
-            width: 2rem;
-            margin-left: .5rem;
         }
     }
 `;

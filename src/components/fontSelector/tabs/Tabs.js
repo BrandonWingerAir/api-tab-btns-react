@@ -7,7 +7,7 @@ import {
     TabsNav
 } from './tabStyles';
 
-export const Tab = ({label, active, onClick, value}) => {
+export const Tab = ({label, active, onClick}) => {
     return (
         <StyledTab
             role="tab"
@@ -33,7 +33,7 @@ export const Tabs = ({selectedTab, onChange, children}) => {
 
     return (
         <TabHeaderContainer>
-            <TabsNav>{tabs}</TabsNav>
+            <TabsNav role="tablist">{tabs}</TabsNav>
         </TabHeaderContainer>
     );
 }
@@ -42,7 +42,7 @@ export const TabPanel = ({children, value, selectedIndex}) => {
     const hidden = value !== selectedIndex;
 
     return (
-        <StyledTabPanel hidden={hidden} active={!hidden}>
+        <StyledTabPanel hidden={hidden} active={!hidden} role="tabpanel">
             {children}
         </StyledTabPanel>
     )

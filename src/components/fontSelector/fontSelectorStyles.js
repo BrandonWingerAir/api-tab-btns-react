@@ -1,10 +1,28 @@
 import styled from 'styled-components';
+import { deviceWidth } from './responsiveStyles';
 
 export const FontSelectContainer = styled.div`
     letter-spacing: 1px;
     font-family: 'Montserrat', sans-serif;
     color: #202930;
     margin-top: 125px;
+`;
+    
+export const TabsLoading = styled.div`
+    margin-top: 22%;
+    text-align: center;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+    
+export const TabContentLoading = styled.div`
+    height: 315px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
 `;
 
 export const FontSelectorContent = styled.div`
@@ -28,13 +46,13 @@ export const TabsContainer = styled.div`
     margin: 0 auto;
     justify-content: space-between;
 
-    @media only screen and (max-width: 1200px) {
+    @media ${deviceWidth.mediumMax} {
         width: 575px;
         max-width: 100vw;
         display: block;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media ${deviceWidth.smallMax} {
         width: 300px;
         max-width: 100vw;
         display: block;
@@ -48,12 +66,12 @@ export const TabsTitle = styled.h1`
     font-size: 3.24rem;
     font-weight: 600;
 
-    @media only screen and (max-width: 1200px) {
+    @media ${deviceWidth.mediumMax} {
         margin-left: 10px;
         font-size: 2rem;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media ${deviceWidth.smallMax} {
         margin-left: 0;
         font-size: 1.5rem;
     }

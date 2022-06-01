@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { deviceWidth } from '../responsiveStyles';
 
 export const TabHeaderContainer = styled.div`
     display: flex;
@@ -7,7 +8,7 @@ export const TabHeaderContainer = styled.div`
     justify-content: center;
     margin-right: 10px;
 
-    @media only screen and (max-width: 1200px) {
+    @media ${deviceWidth.mediumMax} {
         margin-right: 0;
     }
 `;
@@ -30,7 +31,7 @@ export const StyledTab = styled.button`
         cursor: default;
     `};
 
-    @media only screen and (max-width: 1200px) {
+    @media ${deviceWidth.mediumMax} {
         font-size: 1.15rem;
         margin-top: 0;
 
@@ -45,7 +46,7 @@ export const StyledTab = styled.button`
         }
     }
 
-    @media only screen and (max-width: 600px) {
+    @media ${deviceWidth.smallMax} {
         &:first-child {
             margin-left: 15px;
         }
@@ -68,11 +69,11 @@ export const StyledTabPanel = styled.div`
     border : 4px solid #becadf;
     border-radius: 15px;
 
-    @media only screen and (max-width: 1200px) {
+    @media ${deviceWidth.mediumMax} {
         width: 575px;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media ${deviceWidth.smallMax} {
         width: 315px; 
         margin-bottom: 25px;
     }

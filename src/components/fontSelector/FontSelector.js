@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Tabs, Tab, TabPanel } from './tabs/Tabs';
+import axios from 'axios';
 import {
     FontSelectContainer, 
+    TabsLoading,
+    TabContentLoading,
     FontSelectorContent, 
     BuyFontContainer, 
     BuyFontText,
@@ -12,7 +15,7 @@ import Buttons from './tabs/buttons/Buttons';
 import { ActiveBtnContext } from '../../contexts/activeBtnContext';
 
 function FontSelector() {
-    const [appState, setAppState] = useState({
+    const [tabState, setTabState] = useState({
         loading: true,
         tabs: {}
       });
@@ -40,86 +43,142 @@ function FontSelector() {
             "content_endpoint": "fonts_b"
         }];
 
-        setAppState({ loading: false, tabs: allTabs });
-    }, [setAppState]);
+        setTabState({ loading: false, tabs: allTabs });
+    }, [setTabState]);
 
     useEffect(() => {
-    setLoadingTabData(true);
-        if (activeTab === 'fonts_a') {  
-            const allBtns = {
-            "type": "Font selection",
-            "content": [
-                {
-                "id": 112,
-                "abbr": "M",
-                "color": "#00A653",
-                "color-blind-label": "green",
-                "label": "Merriweather project is led by Sorkin Type"
-                },
-                {
-                "id": 113,
-                "abbr": "R",
-                "color": "#FE7FC3",
-                "color-blind-label": "pink",
-                "label": "Roboto doesn't compromise, allowing letters"
-                },
-                {
-                "id": 114,
-                "abbr": "NS",
-                "color": "#046DFF",
-                "color-blind-label": "blue",
-                "label": "Noto Sans covers over 30 scripts"
-                }
-            ]
-            };
+        setLoadingTabData(true);
+        
+        switch(activeTab) {
+            case 'fonts_a':
+                const allBtns = {
+                "type": "Font selection",
+                "content": [
+                    {
+                    "id": 112,
+                    "abbr": "M",
+                    "color": "#00A653",
+                    "color-blind-label": "green",
+                    "label": "Merriweather project is led by Sorkin Type"
+                    },
+                    {
+                    "id": 113,
+                    "abbr": "R",
+                    "color": "#FE7FC3",
+                    "color-blind-label": "pink",
+                    "label": "Roboto doesn't compromise, allowing letters"
+                    },
+                    {
+                    "id": 114,
+                    "abbr": "NS",
+                    "color": "#046DFF",
+                    "color-blind-label": "blue",
+                    "label": "Noto Sans covers over 30 scripts"
+                    }
+                ]
+                };
+    
+                setFontButtons(allBtns.content);
+                setLoadingTabData(false);
+                break;
 
-            setFontButtons(allBtns.content);
-            setLoadingTabData(false);
-        } else if (activeTab === 'fonts_b') {
-            const fontText = {
-            "type": "Text",
-            "content": "Donec sodales sagittis magna. Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis venenatis ante odio sit amet eros. Mauris sollicitudin fermentum libero. Vestibulum fringilla pede sit amet augue. Donec vitae orci sed dolor rutrum auctor."
-            };
+            case 'fonts_b':
+                const fontText = {
+                "type": "Text",
+                "content": "Donec sodales sagittis magna. Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis venenatis ante odio sit amet eros. Mauris sollicitudin fermentum libero. Vestibulum fringilla pede sit amet augue. Donec vitae orci sed dolor rutrum auctor."
+                };
+    
+                setBuyFontText(fontText.content);
+                setLoadingTabData(false);
 
-            setBuyFontText(fontText.content);
-            setLoadingTabData(false);
-        } else {
-        console.log('Error: Invalid endpoint.');
+                break;
+            default:
+                console.log('Error: Invalid endpoint.');
         }
     }, [activeTab]);
 
     // Production Configuration:
     // useEffect(() => {
-    //   setAppState({ loading: true });
+    //   setTabState({ loading: true });
     
     //   const apiUrl = 'http://json.ffwagency.md/tabs';
+      
+    //   axios.get(apiUrl)
+    //     .then((tabs) => {
+    //       const allTabs = tabs.data;
+    //       setTabState({ loading: false, tabs: allTabs });
+    //     })
+    //     .catch(function (error) {
+    //         if (error.response) {
+    //           console.log(error.response.data);
+    //           console.log(error.response.status);
+    //           console.log(error.response.headers);
+    //         } else if (error.request) {
+    //           console.log(error.request);
+    //         } else {
+    //           console.log('Error ', error.message);
+    //         }
+
+    //         console.log(error.config);
+    //       });
+    // }, [setTabState]);
     
-    //   axios.get(apiUrl).then((tabs) => {
-    //     const allTabs = tabs.data;
-    //     setAppState({ loading: false, tabs: allTabs });
-    //   });
-    // }, [setAppState]);
-
     // useEffect(() => {
-    //   setLoadingTabData(true);
-    //     if (activeTab === 'fonts_a') {  
-    //       const apiContentUrl = 'http://json.ffwagency.md/fonts_a';
+    //     setLoadingTabData(true);
         
-    //       axios.get(apiContentUrl).then((btnValues) => {
-    //         const allBtns = btnValues;
-    //         setFontButtons(allBtns.data.content);
-    //         setLoadingTabData(false);
-    //       });
-    //     } else if (activeTab === 'fonts_b') {
-    //       const apiContentUrl = 'http://json.ffwagency.md/fonts_b';
+    //     let apiContentUrl = 'http://json.ffwagency.md/fonts_a';
+    
+    //     switch(activeTab) {
+    //         case 'fonts_a':
+    //             apiContentUrl = 'http://json.ffwagency.md/fonts_a';
+        
+    //             axios.get(apiContentUrl)
+    //                 .then((btnValues) => {
+    //                     const allBtns = btnValues;
+    //                     setFontButtons(allBtns.data.content);
+    //                     setLoadingTabData(false);
+    //                 })
+    //                 .catch(function (error) {
+    //                     if (error.response) {
+    //                     console.log(error.response.data);
+    //                     console.log(error.response.status);
+    //                     console.log(error.response.headers);
+    //                     } else if (error.request) {
+    //                     console.log(error.request);
+    //                     } else {
+    //                     console.log('Error: ', error.message);
+    //                     }
+                        
+    //                     console.log(error.config);
+    //             });
 
-    //       axios.get(apiContentUrl).then((apiData) => {
-    //         const fontText = apiData;
-    //         setBuyFontText(fontText.data.content);
-    //         setLoadingTabData(false);
-    //       });
-    //     } else {
-    //       console.log('Error: Invalid endpoint.');
+    //             break;
+    //         case 'fonts_b':
+    //             apiContentUrl = 'http://json.ffwagency.md/fonts_b';
+
+    //             axios.get(apiContentUrl)
+    //                 .then((apiData) => {
+    //                     const fontText = apiData;
+    //                     setBuyFontText(fontText.data.content);
+    //                     setLoadingTabData(false);
+    //                 })
+    //                 .catch(function (error) {
+    //                     if (error.response) {
+    //                     console.log(error.response.data);
+    //                     console.log(error.response.status);
+    //                     console.log(error.response.headers);
+    //                     } else if (error.request) {
+    //                     console.log(error.request);
+    //                     } else {
+    //                     console.log('Error: ', error.message);
+    //                     }
+                        
+    //                     console.log(error.config);
+    //             });
+    
+    //             break;
+    //         default:
+    //             console.log('Error: Invalid endpoint.');
     //     }
     // }, [activeTab]);
 
@@ -130,13 +189,13 @@ function FontSelector() {
     return (
         <FontSelectContainer>
             <FontSelectorContent>
-                { !appState.loading && (
+                { !tabState.loading && (
                     <ActiveBtnContext.Provider value={{ activeBtn, setActiveBtn }}>
                         <TabsContainer>
-                            <TabsTitle>Please select one font</TabsTitle>
+                            <TabsTitle id="fontSelectForm">Please select one font</TabsTitle>
                             <Tabs selectedTab={activeTab} onChange={handleChange}>
-                            <Tab label={appState.tabs[0].label} value={appState.tabs[0].content_endpoint}></Tab>
-                            <Tab label={appState.tabs[1].label} value={appState.tabs[1].content_endpoint}></Tab>
+                                <Tab label={tabState.tabs[0].label} value={tabState.tabs[0].content_endpoint}/>
+                                <Tab label={tabState.tabs[1].label} value={tabState.tabs[1].content_endpoint}/>
                             </Tabs>
                         </TabsContainer>
                         <div>
@@ -145,7 +204,7 @@ function FontSelector() {
                                     <Buttons buttons={fontButtons}/>
                                 )}
                                 { loadingTabData && (
-                                    <p>Loading Data...</p>
+                                    <TabContentLoading>Loading Data...</TabContentLoading>
                                 )}
                             </TabPanel>
 
@@ -158,14 +217,14 @@ function FontSelector() {
                                     </BuyFontContainer>
                                 )}
                                 { loadingTabData && (
-                                    <p>Loading Data...</p>
+                                    <TabContentLoading>Loading Data...</TabContentLoading>
                                 )}
                             </TabPanel>
                         </div>
                     </ActiveBtnContext.Provider>
                 )}
-                { appState.loading && (
-                    <p>Loading Tabs...</p>
+                { tabState.loading && (
+                    <TabsLoading>Loading Tabs...</TabsLoading>
                 )}
             </FontSelectorContent>
         </FontSelectContainer>

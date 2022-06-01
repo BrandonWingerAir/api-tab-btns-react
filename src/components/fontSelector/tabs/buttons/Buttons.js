@@ -5,7 +5,7 @@ import {
     BtnIcon,
     BtnIconBg,
     BtnIconAbbr,
-    BtnText,
+    BtnDesc,
     List,
     ListItem
 } from './buttonStyles';
@@ -28,26 +28,29 @@ export default function Buttons({ buttons }) {
         window.localStorage.setItem('USER_FONT_ID', JSON.stringify(activeBtn));
     }, [activeBtn]);
 
-    return <BtnContainer>
+    return <BtnContainer aria-labelledby="fontSelectForm" role="radiogroup">
         {buttons.map((btn) => {
             return <FontBtn 
                         key={btn.id}
                         onClick={() => onClick(btn)}
                         isActive={activeBtn === btn.id ? true : false}
-                        btnId={btn.id}
+                        aria-label={btn['color-blind-label']}
+                        role="radio"
                     >
-                        <BtnIcon btnId={btn.id}>
+                        <BtnIcon>
                             <BtnIconBg btnColor={btn.color}>
-                                <BtnIconAbbr btnId={btn.id}>{btn.abbr}</BtnIconAbbr>
+                                <BtnIconAbbr>
+                                    {btn.abbr}
+                                </BtnIconAbbr>
                             </BtnIconBg>
                         </BtnIcon>
-                        <BtnText btnId={btn.id}>
+                        <BtnDesc>
                             <List>
                                 <ListItem>
                                     {btn.label}
                                 </ListItem>
                             </List>
-                        </BtnText>
+                        </BtnDesc>
             </FontBtn>
         })}
     </BtnContainer>;
