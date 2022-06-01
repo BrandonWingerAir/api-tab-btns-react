@@ -2,76 +2,53 @@ import styled, { css } from 'styled-components';
 
 export const BtnContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: 1fr 1fr; 
     border-radius: 10px;
-    padding: 10px;
 
     @media only screen and (max-width: 1200px) {
-        .container {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr 1fr;
             width: 575px;
-            padding-top: 0;
-        }
     }
 
     @media only screen and (max-width: 600px) {
-        .container {
-            grid-template-columns: repeat(1, 1fr);
+            grid-template-columns: 1fr;
             width: 315px;
             padding: 10px 5px;
-        }
     }
 `;
 
 export const FontBtn = styled.div`
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
-    margin-left: 65px;
-    height: 225px;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    font-size: 1.4rem;
+    align-items: top;
     cursor: pointer;
     color: #202930;
-    background-color: var(--secondary);
-    transition: background-color 0.25s;
+    font-size: 1.9rem;
 
-    &:hover {
-        background-color: var(--primary);
-    }
-
-    ${(props) => {
-        switch (props.btnId) {
-            case 112:
-            return css`
-                grid-column: 1 / span 3;
-                grid-row: 1 / 3;
-                display: block;
-                margin-top: 35px;
-                margin-left: 35px;
-            `;
-            case 113:
-            return css`
-                grid-column: 4 / 8;
-                grid-row: 1 / 2;
-            `;
-            case 114:
-            return css`
-                grid-column: 4 / 8;
-                grid-row: 3 / 2;
-            `;
-            default:
-            return;
+    &:first-of-type {
+        grid-row: span 2;
+        
+        > :first-child {
+            width: 200px;
+            height: 200px;
         }
-    }}
+    }
 
     opacity: ${props => props.isActive ? "50%" : "initial"};
 
     @media only screen and (max-width: 1200px) {
         margin-left: 0;
-        display: block;
-        padding: 0.25rem .5rem;
+        font-size: 1rem;
+        
+        &:first-of-type {
+            grid-row: span 1;
+            grid-column: span 2;
+            
+            > :first-child {
+                width: 90px;
+                height: 90px;
+            }
+        }
     }
 
     @media only screen and (max-width: 600px) {
@@ -86,39 +63,13 @@ export const BtnIcon = styled.div`
     border : 2px solid #000001;
     border-radius: 25px;
     padding: 6px;
-    
-    ${(props) => {
-        switch (props.btnId) {
-            case 112:
-                return css`
-                    width: 200px;
-                    height: 200px;
-                `;
-            default:
-                return css`
-                    width: 140px;
-                    height: 140px;
-                `;
-            }
-    }}
+    width: 140px;
+    height: 140px;
 
     @media only screen and (max-width: 1200px) {
         margin-left: 10px;
-
-        ${(props) => {
-            switch (props.btnId) {
-                case 112:
-                    return css`
-                        width: 90px;
-                        height: 90px;
-                    `;
-                default:
-                    return css`
-                        width: 70px;
-                        height: 70px;
-                    `;
-                }
-        }}
+        width: 70px;
+        height: 70px;
     }
 
     @media only screen and (max-width: 600px) {
@@ -202,56 +153,41 @@ export const BtnIconAbbr = styled.span`
 `;
 
 export const BtnText = styled.div`
-    font-size: 2rem;
+    letter-spacing: initial;
     font-weight: 500;
     hyphens: auto;
-    max-width: 350px;
+    width: 400px;
 
-    ${(props) => {
-        switch (props.btnId) {
-            case 112:
-                return css`
-                    margin-left: 0;
-                `;
-            default:
-                return css`
-                    margin-left: 50px;
-                `;
-        }
-    }}
+    @media only screen and (max-width: 1200px) {
+        width: 250px;
+    }
 `;
 
-export const ListStyle = styled.ul`
-    padding-left: 0;
-    margin-top: 20px;
-    position: relative;
+export const List = styled.ul`
     list-style: none;
-
-    ${(props) => {
-        switch (props.btnId) {
-            case 112:
-                return css`
-                    left: 30px;
-                    top: 10px;
-                `;
-            default:
-                return css`
-                    left: 15px;
-                `;
-        }
-    }}
+    padding-left: 0;
 `;
+    
+export const ListItem = styled.li`
+    display: flex;
+    align-items: top;
 
-export const ListText = styled.li`
     &:before {
         content: "•";
         color: #96a1b3;
         font-weight: bold;
         display: inline-block; 
-        width: 2rem;
-        margin-left: -2rem;
+        width: 5.5rem;
+        margin-left: .5rem;
         position: relative;
-        top: .5rem;
+        top: -1.55rem;
         font-size: 4rem;
+    }
+
+    @media only screen and (max-width: 1200px) {
+        &:before {
+            font-size: 3.5rem;
+            width: 3rem;
+        }
     }
 `;

@@ -6,8 +6,8 @@ import {
     BtnIconBg,
     BtnIconAbbr,
     BtnText,
-    ListStyle,
-    ListText
+    List,
+    ListItem
 } from './buttonStyles';
 import { ActiveBtnContext } from '../../../../contexts/activeBtnContext';
 
@@ -42,11 +42,11 @@ export default function Buttons({ buttons }) {
                             </BtnIconBg>
                         </BtnIcon>
                         <BtnText btnId={btn.id}>
-                            <ListStyle>
-                                <ListText>
+                            <List>
+                                <ListItem>
                                     {btn.label}
-                                </ListText>
-                            </ListStyle>
+                                </ListItem>
+                            </List>
                         </BtnText>
             </FontBtn>
         })}

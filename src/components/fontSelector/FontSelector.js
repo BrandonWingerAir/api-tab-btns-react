@@ -100,7 +100,49 @@ function FontSelector() {
                 "color": "#046DFF",
                 "color-blind-label": "blue",
                 "label": "Noto Sans covers over 30 scripts"
-                }
+                },
+                {
+                "id": 116,
+                "abbr": "M",
+                "color": "orange",
+                "color-blind-label": "green",
+                "label": "Merriweather project is led by Sorkin Type"
+                },
+                {
+                "id": 117,
+                "abbr": "R",
+                "color": "navy",
+                "color-blind-label": "pink",
+                "label": "Roboto doesn't compromise, allowing letters"
+                },
+                {
+                "id": 118,
+                "abbr": "NS",
+                "color": "purple",
+                "color-blind-label": "blue",
+                "label": "Noto Sans covers over 30 scripts"
+                },
+                {
+                "id": 116,
+                "abbr": "M",
+                "color": "pink",
+                "color-blind-label": "green",
+                "label": "Merriweather project is led by Sorkin Type"
+                },
+                {
+                "id": 117,
+                "abbr": "R",
+                "color": "brown",
+                "color-blind-label": "pink",
+                "label": "Roboto doesn't compromise, allowing letters"
+                },
+                {
+                "id": 118,
+                "abbr": "NS",
+                "color": "darkgreen",
+                "color-blind-label": "blue",
+                "label": "Noto Sans covers over 30 scripts"
+                },
             ]
             };
 

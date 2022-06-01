@@ -40,10 +40,9 @@ export const StyledTab = styled.button`
 export const StyledTabPanel = styled.div`
     display: ${(p) => (p.active ? 'flex' : 'none')};
     box-sizing: border-box;
-    padding: 10px 0;
     background: #feffff;
     flex-direction: column;
-    width: 1175px;
+    width: 1165px;
     margin: 0 auto;
     justify-content: center;
     border : 4px solid #becadf;
