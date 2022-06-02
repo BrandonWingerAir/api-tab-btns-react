@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { deviceWidth } from './responsiveStyle';
+import { deviceWidth } from './responsiveSizes';
 
 export const FontSelectContainer = styled.div`
     letter-spacing: 1px;
@@ -24,6 +24,14 @@ export const TabContentLoading = styled.div`
     align-items: center;
     justify-content: center;
     font-size: 1.25rem;
+
+    @media ${deviceWidth.mediumMax} {
+        font-size: 1.15rem;
+    }
+
+    @media ${deviceWidth.smallMax} {
+        font-size: 1.1rem;
+    }
 `;
 
 export const TabsHeader = styled.div`
@@ -38,13 +46,11 @@ export const TabsHeader = styled.div`
     @media ${deviceWidth.mediumMax} {
         width: 575px;
         display: block;
-        padding: 35px 25px;
     }
 
     @media ${deviceWidth.smallMax} {
         width: 300px;
-        max-width: 100vw;
-        display: block;
+        padding: 30px 5px;
     }
 `;
 
@@ -64,7 +70,7 @@ export const TabsTitle = styled.h1`
 
     @media ${deviceWidth.smallMax} {
         margin-left: 0;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 `;
 
@@ -83,6 +89,11 @@ export const BuyFontText = styled.div`
     
     @media ${deviceWidth.mediumMax} {
         font-size: 1.1rem;
-        padding-bottom: 25px;
+        padding-bottom: 30px;
+    }
+    
+    @media ${deviceWidth.smallMax} {
+        font-size: 1rem;
+        padding: 5px 5px 10px 5px;
     }
 `;

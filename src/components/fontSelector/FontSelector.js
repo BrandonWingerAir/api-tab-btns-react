@@ -29,157 +29,90 @@ function FontSelector() {
     const [fontButtons, setFontButtons] = useState([]);
     const [buyFontText, setBuyFontText] = useState();
 
-    // Development Configuration:
+    // Production Configuration:
     useEffect(() => {
-        const allTabs = [{
-            "id": 101,
-            "label": "My Fonts",
-            "content_endpoint": "fonts_a"
-            },
-            {
-            "id": 102,
-            "label": "Buy Fonts",
-            "content_endpoint": "fonts_b"
-        }];
+      setTabState({ loading: true });
+    
+      const apiUrl = 'http://json.ffwagency.md/tabs';
+      
+      axios.get(apiUrl)
+        .then((tabs) => {
+          const allTabs = tabs.data;
+          setTabState({ loading: false, tabs: allTabs });
+        })
+        .catch(function (error) {
+            if (error.response) {
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              console.log(error.request);
+            } else {
+              console.log('Error ', error.message);
+            }
 
-        setTabState({ loading: false, tabs: allTabs });
+            console.log(error.config);
+          });
     }, [setTabState]);
-
+    
     useEffect(() => {
         setLoadingTabData(true);
         
+        let apiContentUrl = 'http://json.ffwagency.md/fonts_a';
+    
         switch(activeTab) {
             case 'fonts_a':
-                const allBtns = {
-                "type": "Font selection",
-                "content": [
-                    {
-                    "id": 112,
-                    "abbr": "M",
-                    "color": "#00A653",
-                    "color-blind-label": "green",
-                    "label": "Merriweather project is led by Sorkin Type"
-                    },
-                    {
-                    "id": 113,
-                    "abbr": "R",
-                    "color": "#FE7FC3",
-                    "color-blind-label": "pink",
-                    "label": "Roboto doesn't compromise, allowing letters"
-                    },
-                    {
-                    "id": 114,
-                    "abbr": "NS",
-                    "color": "#046DFF",
-                    "color-blind-label": "blue",
-                    "label": "Noto Sans covers over 30 scripts"
-                    }
-                ]
-                };
-    
-                setFontButtons(allBtns.content);
-                setLoadingTabData(false);
+                apiContentUrl = 'http://json.ffwagency.md/fonts_a';
+        
+                axios.get(apiContentUrl)
+                    .then((btnValues) => {
+                        const allBtns = btnValues;
+                        setFontButtons(allBtns.data.content);
+                        setLoadingTabData(false);
+                    })
+                    .catch(function (error) {
+                        if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                        } else if (error.request) {
+                        console.log(error.request);
+                        } else {
+                        console.log('Error: ', error.message);
+                        }
+                        
+                        console.log(error.config);
+                });
+
                 break;
-
             case 'fonts_b':
-                const fontText = {
-                "type": "Text",
-                "content": "Donec sodales sagittis magna. Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis venenatis ante odio sit amet eros. Mauris sollicitudin fermentum libero. Vestibulum fringilla pede sit amet augue. Donec vitae orci sed dolor rutrum auctor."
-                };
-    
-                setBuyFontText(fontText.content);
-                setLoadingTabData(false);
+                apiContentUrl = 'http://json.ffwagency.md/fonts_b';
 
+                axios.get(apiContentUrl)
+                    .then((apiData) => {
+                        const fontText = apiData;
+                        setBuyFontText(fontText.data.content);
+                        setLoadingTabData(false);
+                    })
+                    .catch(function (error) {
+                        if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                        } else if (error.request) {
+                        console.log(error.request);
+                        } else {
+                        console.log('Error: ', error.message);
+                        }
+                        
+                        console.log(error.config);
+                });
+    
                 break;
             default:
                 console.log('Error: Invalid endpoint.');
         }
     }, [activeTab]);
-
-    // Production Configuration:
-    // useEffect(() => {
-    //   setTabState({ loading: true });
-    
-    //   const apiUrl = 'http://json.ffwagency.md/tabs';
-      
-    //   axios.get(apiUrl)
-    //     .then((tabs) => {
-    //       const allTabs = tabs.data;
-    //       setTabState({ loading: false, tabs: allTabs });
-    //     })
-    //     .catch(function (error) {
-    //         if (error.response) {
-    //           console.log(error.response.data);
-    //           console.log(error.response.status);
-    //           console.log(error.response.headers);
-    //         } else if (error.request) {
-    //           console.log(error.request);
-    //         } else {
-    //           console.log('Error ', error.message);
-    //         }
-
-    //         console.log(error.config);
-    //       });
-    // }, [setTabState]);
-    
-    // useEffect(() => {
-    //     setLoadingTabData(true);
-        
-    //     let apiContentUrl = 'http://json.ffwagency.md/fonts_a';
-    
-    //     switch(activeTab) {
-    //         case 'fonts_a':
-    //             apiContentUrl = 'http://json.ffwagency.md/fonts_a';
-        
-    //             axios.get(apiContentUrl)
-    //                 .then((btnValues) => {
-    //                     const allBtns = btnValues;
-    //                     setFontButtons(allBtns.data.content);
-    //                     setLoadingTabData(false);
-    //                 })
-    //                 .catch(function (error) {
-    //                     if (error.response) {
-    //                     console.log(error.response.data);
-    //                     console.log(error.response.status);
-    //                     console.log(error.response.headers);
-    //                     } else if (error.request) {
-    //                     console.log(error.request);
-    //                     } else {
-    //                     console.log('Error: ', error.message);
-    //                     }
-                        
-    //                     console.log(error.config);
-    //             });
-
-    //             break;
-    //         case 'fonts_b':
-    //             apiContentUrl = 'http://json.ffwagency.md/fonts_b';
-
-    //             axios.get(apiContentUrl)
-    //                 .then((apiData) => {
-    //                     const fontText = apiData;
-    //                     setBuyFontText(fontText.data.content);
-    //                     setLoadingTabData(false);
-    //                 })
-    //                 .catch(function (error) {
-    //                     if (error.response) {
-    //                     console.log(error.response.data);
-    //                     console.log(error.response.status);
-    //                     console.log(error.response.headers);
-    //                     } else if (error.request) {
-    //                     console.log(error.request);
-    //                     } else {
-    //                     console.log('Error: ', error.message);
-    //                     }
-                        
-    //                     console.log(error.config);
-    //             });
-    
-    //             break;
-    //         default:
-    //             console.log('Error: Invalid endpoint.');
-    //     }
-    // }, [activeTab]);
 
     const handleChange = (e, value) => {
         setActiveTab(value);

@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { deviceWidth } from '../../responsiveStyle';
+import { deviceWidth } from '../../responsiveSizes';
 
 export const CardContainer = styled.div`
     display: grid;
-    grid-template-columns: 450px 1fr; 
+    grid-template-columns: 450px 1fr;
+    grid-row-gap: 15px;
     border-radius: 10px;
 
     @media ${deviceWidth.mediumMax} {
@@ -105,17 +106,21 @@ export const BtnText = styled.span`
         letter-spacing: 1px;
 
         &:before {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin-left: 0rem;
         }
     }
 
     @media ${deviceWidth.smallMax} {
+        line-height: 1.5rem;
+        font-size: .95rem;
+
         &:before {
-            top: -0.85rem;
-            font-size: 2rem;
-            width: 2rem;
-            margin-left: .5rem;
+            top: 0;
+            font-size: 1.4rem;
+            min-width: 25px;
+            max-width: 25px;
+            margin-left: .6rem;
         }
     }
 `;
@@ -155,25 +160,31 @@ export const CardBtn = styled.button`
         }
     }
 
-    @media ${deviceWidth.mediumMax} {
-        margin-bottom: 10px;
+    &:nth-of-type(2n + 4) {
+        ${BtnText} {
+            margin-top: 20px;
 
-        &:first-of-type {
-            ${BtnTextContainer} {
-                width: 385px;
+            &:before {
+                margin-left: 0;
             }
         }
     }
 
     opacity: ${props => props.isActive ? "50%" : "initial"};
+    cursor: ${props => props.isActive ? "initial" : "pointer"};
 
     @media ${deviceWidth.mediumMax} {
         margin-left: 0;
+        margin-bottom: 10px;
         font-size: 1rem;
         
         &:first-of-type {
             grid-row: span 1;
             grid-column: span 2;
+
+            ${BtnTextContainer} {
+                width: 385px;
+            }
 
             ${BtnText} {
                 margin-left: 20px;
@@ -205,6 +216,10 @@ export const CardBtn = styled.button`
         &:first-of-type {
             grid-column: span 1;
 
+            ${BtnTextContainer} {
+                width: 185px;
+            }
+
             ${BtnIcon} {
                 width: 75px;
                 height: 75px;
@@ -212,6 +227,10 @@ export const CardBtn = styled.button`
 
             ${BtnIconAbbr} {
                 font-size: 2.2rem;
+            }
+
+            ${BtnText} {
+                margin-left: 10px;
             }
         }
     }

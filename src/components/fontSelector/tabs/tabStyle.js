@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { deviceWidth } from '../responsiveStyle';
+import { deviceWidth } from '../responsiveSizes';
 
 export const TabsNavContainer = styled.div`
     display: flex;
@@ -45,12 +45,12 @@ export const TabLabel = styled.button`
 
     @media ${deviceWidth.smallMax} {
         &:first-child {
-            margin-left: 15px;
+            margin-left: 5px;
         }
 
         &:last-child {
             text-align: right;
-            margin-right: 15px;
+            margin-right: 5px;
         }
     }
 `;
@@ -73,8 +73,9 @@ export const TabContent = styled.div`
     }
 
     @media ${deviceWidth.smallMax} {
-        width: 315px; 
+        width: 300px; 
         margin-bottom: 25px;
+        padding: 10px 10px 5px 10px;
     }
 `;
 
