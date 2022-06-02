@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Tabs, Tab, TabPanel } from './tabs/Tabs';
+import { Tabs, Tab, TabPanel } from './Tabs/Tabs';
 import axios from 'axios';
 import {
     FontSelectContainer, 
     TabsLoading,
     TabContentLoading,
-    FontSelectorContent, 
     BuyFontContainer, 
     BuyFontText,
-    TabsContainer,
+    TabsHeader,
     TabsTitle
-} from './fontSelectorStyles';
-import Buttons from './tabs/buttons/Buttons';
+} from './fontSelectorStyle';
+import Card from './Tabs/Card/Card';
 import { ActiveBtnContext } from '../../contexts/activeBtnContext';
 
 function FontSelector() {
@@ -188,20 +187,19 @@ function FontSelector() {
 
     return (
         <FontSelectContainer>
-            <FontSelectorContent>
                 { !tabState.loading && (
                     <ActiveBtnContext.Provider value={{ activeBtn, setActiveBtn }}>
-                        <TabsContainer>
+                        <TabsHeader>
                             <TabsTitle id="fontSelectForm">Please select one font</TabsTitle>
                             <Tabs selectedTab={activeTab} onChange={handleChange}>
                                 <Tab label={tabState.tabs[0].label} value={tabState.tabs[0].content_endpoint}/>
                                 <Tab label={tabState.tabs[1].label} value={tabState.tabs[1].content_endpoint}/>
                             </Tabs>
-                        </TabsContainer>
+                        </TabsHeader>
                         <div>
                             <TabPanel value={activeTab} selectedIndex="fonts_a">
                                 { !loadingTabData && (
-                                    <Buttons buttons={fontButtons}/>
+                                    <Card buttons={fontButtons}/>
                                 )}
                                 { loadingTabData && (
                                     <TabContentLoading>Loading Data...</TabContentLoading>
@@ -226,7 +224,6 @@ function FontSelector() {
                 { tabState.loading && (
                     <TabsLoading>Loading Tabs...</TabsLoading>
                 )}
-            </FontSelectorContent>
         </FontSelectContainer>
     )
 }

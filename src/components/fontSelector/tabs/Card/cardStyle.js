@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { deviceWidth } from '../../responsiveStyles';
+import { deviceWidth } from '../../responsiveStyle';
 
-export const BtnContainer = styled.div`
+export const CardContainer = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 450px 1fr; 
     border-radius: 10px;
 
     @media ${deviceWidth.mediumMax} {
@@ -54,7 +54,7 @@ export const BtnIconAbbr = styled.span`
     position: absolute;
     bottom: 10px;
     left: 12.5%;
-
+    
     @media ${deviceWidth.mediumMax} {
         font-size: 1.4rem;
     }
@@ -64,11 +64,14 @@ export const BtnIconAbbr = styled.span`
     }
 `;
 
-export const BtnDesc = styled.div`
-    letter-spacing: initial;
+export const BtnTextContainer = styled.div`
+    font-size: 2.05rem;
+    letter-spacing: 2px;
+    line-height: 2.7rem;
     font-weight: 500;
     hyphens: auto;
     width: 400px;
+    padding-top: 20px;
 
     @media ${deviceWidth.mediumMax} {
         width: 250px;
@@ -78,14 +81,8 @@ export const BtnDesc = styled.div`
         width: 200px;
     }
 `;
-
-export const List = styled.ul`
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-`;
     
-export const ListItem = styled.li`
+export const BtnText = styled.div`
     display: flex;
     align-items: top;
 
@@ -94,12 +91,12 @@ export const ListItem = styled.li`
         color: #96a1b3;
         font-weight: bold;
         display: inline-block; 
-        min-width: 55px;
-        max-width: 55px;
-        margin-left: 1.4rem;
+        min-width: 32px;
+        max-width: 32px;
+        margin-left: 2.8rem;
         position: relative;
-        top: -.85rem;
-        font-size: 3rem;
+        top: -.15rem;
+        font-size: 2rem;
     }
 
     @media ${deviceWidth.mediumMax} {
@@ -119,7 +116,7 @@ export const ListItem = styled.li`
     }
 `;
 
-export const FontBtn = styled.button`
+export const CardBtn = styled.button`
     background-color: initial;
     border: initial;
     text-align: initial;
@@ -128,18 +125,29 @@ export const FontBtn = styled.button`
     align-items: top;
     cursor: pointer;
     color: #202930;
-    font-size: 1.9rem;
+    padding: 0;
+    margin-bottom: 70px;
 
     &:first-of-type {
         grid-row: span 2;
-        
+
         ${BtnIcon} {
             width: 200px;
             height: 200px;
         }
-
+        
         ${BtnIconAbbr} {
-            font-size: 4rem;
+            font-size: 4.4rem;
+        }
+
+        ${BtnTextContainer} {
+            width: 350px;
+        }
+
+        ${BtnText} {
+            &:before {
+                margin-left: 0;
+            }
         }
     }
 

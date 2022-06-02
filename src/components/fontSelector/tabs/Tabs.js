@@ -1,21 +1,21 @@
 import React from 'react';
 
 import {
-    TabHeaderContainer,
-    StyledTab,
-    StyledTabPanel,
+    TabsNavContainer,
+    TabLabel,
+    TabContent,
     TabsNav
-} from './tabStyles';
+} from './tabStyle';
 
 export const Tab = ({label, active, onClick}) => {
     return (
-        <StyledTab
+        <TabLabel
             role="tab"
             active={active}
             onClick={onClick}
         >
             {label}
-        </StyledTab>
+        </TabLabel>
     )
 }
 
@@ -32,9 +32,9 @@ export const Tabs = ({selectedTab, onChange, children}) => {
     });
 
     return (
-        <TabHeaderContainer>
+        <TabsNavContainer>
             <TabsNav role="tablist">{tabs}</TabsNav>
-        </TabHeaderContainer>
+        </TabsNavContainer>
     );
 }
 
@@ -42,8 +42,8 @@ export const TabPanel = ({children, value, selectedIndex}) => {
     const hidden = value !== selectedIndex;
 
     return (
-        <StyledTabPanel hidden={hidden} active={!hidden} role="tabpanel">
+        <TabContent hidden={hidden} active={!hidden} role="tabpanel">
             {children}
-        </StyledTabPanel>
+        </TabContent>
     )
 }

@@ -1,17 +1,16 @@
 import React, { useContext, useEffect } from 'react';
 import {
-    BtnContainer,
-    FontBtn,
+    CardContainer,
+    CardBtn,
     BtnIcon,
     BtnIconBg,
     BtnIconAbbr,
-    BtnDesc,
-    List,
-    ListItem
-} from './buttonStyles';
+    BtnTextContainer,
+    BtnText
+} from './cardStyle';
 import { ActiveBtnContext } from '../../../../contexts/activeBtnContext';
 
-export default function Buttons({ buttons }) {
+export default function Card({ buttons }) {
     const {activeBtn, setActiveBtn} = useContext(ActiveBtnContext);
     
     function onClick(btn) {
@@ -28,9 +27,9 @@ export default function Buttons({ buttons }) {
         window.localStorage.setItem('USER_FONT_ID', JSON.stringify(activeBtn));
     }, [activeBtn]);
 
-    return <BtnContainer aria-labelledby="fontSelectForm" role="radiogroup">
+    return <CardContainer aria-labelledby="fontSelectForm" role="radiogroup">
         {buttons.map((btn) => {
-            return <FontBtn 
+            return <CardBtn 
                         key={btn.id}
                         onClick={() => onClick(btn)}
                         isActive={activeBtn === btn.id ? true : false}
@@ -44,14 +43,12 @@ export default function Buttons({ buttons }) {
                                 </BtnIconAbbr>
                             </BtnIconBg>
                         </BtnIcon>
-                        <BtnDesc>
-                            <List>
-                                <ListItem>
-                                    {btn.label}
-                                </ListItem>
-                            </List>
-                        </BtnDesc>
-            </FontBtn>
+                        <BtnTextContainer>
+                            <BtnText>
+                                {btn.label}
+                            </BtnText>
+                        </BtnTextContainer>
+            </CardBtn>
         })}
-    </BtnContainer>;
+    </CardContainer>;
 }

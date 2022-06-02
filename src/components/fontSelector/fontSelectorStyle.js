@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { deviceWidth } from './responsiveStyles';
+import { deviceWidth } from './responsiveStyle';
 
 export const FontSelectContainer = styled.div`
     letter-spacing: 1px;
     font-family: 'Montserrat', sans-serif;
     color: #202930;
-    margin-top: 125px;
+    background: #feffff;
+    margin: 0 auto;
 `;
     
 export const TabsLoading = styled.div`
@@ -25,26 +26,14 @@ export const TabContentLoading = styled.div`
     font-size: 1.25rem;
 `;
 
-export const FontSelectorContent = styled.div`
-    background: #feffff;
-    padding-bottom: 75px;
-    margin: 0 auto;
-`;
-
-export const BuyFontContainer = styled.div`
-    padding: 0 35px;
-`;
-
-export const BuyFontText = styled.div`
-    font-size: 1.25rem;
-    hyphens: auto;
-`;
-
-export const TabsContainer = styled.div`
+export const TabsHeader = styled.div`
     display: flex;
     width: 1175px;
+    box-sizing: border-box;
     margin: 0 auto;
     justify-content: space-between;
+    align-items: flex-end;
+    padding: 40px 25px;
 
     @media ${deviceWidth.mediumMax} {
         width: 575px;
@@ -61,6 +50,7 @@ export const TabsContainer = styled.div`
 
 export const TabsTitle = styled.h1`
     margin-left: 25px;
+    margin: 0;
     flex-grow: 7;
     text-align: left;
     font-size: 3.24rem;
@@ -75,4 +65,14 @@ export const TabsTitle = styled.h1`
         margin-left: 0;
         font-size: 1.5rem;
     }
+`;
+
+export const BuyFontContainer = styled.div`
+    padding: 0 35px;
+`;
+
+export const BuyFontText = styled.div`
+    font-size: 1.4rem;
+    hyphens: auto;
+    padding-bottom: 70px;
 `;

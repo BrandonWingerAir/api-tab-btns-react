@@ -1,24 +1,21 @@
 import styled, { css } from 'styled-components';
-import { deviceWidth } from '../responsiveStyles';
+import { deviceWidth } from '../responsiveStyle';
 
-export const TabHeaderContainer = styled.div`
+export const TabsNavContainer = styled.div`
     display: flex;
     flex-direction: column;
     flex-grow: 2;
-    justify-content: center;
-    margin-right: 10px;
 
     @media ${deviceWidth.mediumMax} {
         margin-right: 0;
     }
 `;
 
-export const StyledTab = styled.button`
+export const TabLabel = styled.button`
     color: #fc540c;
     width: 100%;
-    padding: 20px 0;
-    margin-top: 20px;
     text-transform: uppercase;
+    text-align: right;
     font-size: 1.29rem;
     font-weight: 600;
     letter-spacing: 1px;
@@ -58,13 +55,14 @@ export const StyledTab = styled.button`
     }
 `;
 
-export const StyledTabPanel = styled.div`
+export const TabContent = styled.div`
     display: ${(p) => (p.active ? 'flex' : 'none')};
     box-sizing: border-box;
     background: #feffff;
     flex-direction: column;
-    width: 1165px;
+    width: 1175px;
     margin: 0 auto;
+    padding: 90px 75px 20px 75px;
     justify-content: center;
     border : 4px solid #becadf;
     border-radius: 15px;
