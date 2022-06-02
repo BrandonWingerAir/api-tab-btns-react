@@ -37,8 +37,8 @@ export const TabsHeader = styled.div`
 
     @media ${deviceWidth.mediumMax} {
         width: 575px;
-        max-width: 100vw;
         display: block;
+        padding: 35px 25px;
     }
 
     @media ${deviceWidth.smallMax} {
@@ -57,7 +57,8 @@ export const TabsTitle = styled.h1`
     font-weight: 600;
 
     @media ${deviceWidth.mediumMax} {
-        margin-left: 10px;
+        margin-left: 5px;
+        margin-bottom: 25px;
         font-size: 2rem;
     }
 
@@ -69,10 +70,19 @@ export const TabsTitle = styled.h1`
 
 export const BuyFontContainer = styled.div`
     padding: 0 35px;
+
+    @media ${deviceWidth.mediumMax} {
+        padding: 0 10px;
+    }
 `;
 
 export const BuyFontText = styled.div`
     font-size: 1.4rem;
     hyphens: auto;
     padding-bottom: 70px;
+    
+    @media ${deviceWidth.mediumMax} {
+        font-size: 1.1rem;
+        padding-bottom: 25px;
+    }
 `;

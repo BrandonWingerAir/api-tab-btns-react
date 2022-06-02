@@ -34,12 +34,12 @@ export const TabLabel = styled.button`
 
         &:first-child {
             text-align: left;
-            margin-left: 20px;
+            margin-left: 2px;
         }
 
         &:last-child {
             text-align: right;
-            margin-right: 20px;
+            margin-right: 2px;
         }
     }
 
@@ -62,13 +62,14 @@ export const TabContent = styled.div`
     flex-direction: column;
     width: 1175px;
     margin: 0 auto;
-    padding: 90px 75px 20px 75px;
+    padding: 90px 80px 20px 80px;
     justify-content: center;
     border : 4px solid #becadf;
     border-radius: 15px;
 
     @media ${deviceWidth.mediumMax} {
         width: 575px;
+        padding: 35px 35px 10px 35px;
     }
 
     @media ${deviceWidth.smallMax} {

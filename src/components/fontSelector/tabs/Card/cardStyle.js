@@ -8,7 +8,7 @@ export const CardContainer = styled.div`
 
     @media ${deviceWidth.mediumMax} {
             grid-template-columns: 1fr 1fr;
-            width: 575px;
+            width: 525px;
     }
 
     @media ${deviceWidth.smallMax} {
@@ -26,13 +26,11 @@ export const BtnIcon = styled.div`
     height: 140px;
 
     @media ${deviceWidth.mediumMax} {
-        margin-left: 10px;
         width: 70px;
         height: 70px;
     }
 
     @media ${deviceWidth.smallMax} {
-        margin-left: 0;
         width: 55px;
         height: 55px;
     }
@@ -65,16 +63,13 @@ export const BtnIconAbbr = styled.span`
 `;
 
 export const BtnTextContainer = styled.div`
-    font-size: 2.05rem;
-    letter-spacing: 2px;
-    line-height: 2.7rem;
-    font-weight: 500;
-    hyphens: auto;
     width: 400px;
     padding-top: 20px;
 
-    @media ${deviceWidth.mediumMax} {
-        width: 250px;
+@media ${deviceWidth.mediumMax} {
+        min-height: 125px;
+        width: 245px;
+        padding-top: 15px;
     }
 
     @media ${deviceWidth.smallMax} {
@@ -82,9 +77,14 @@ export const BtnTextContainer = styled.div`
     }
 `;
     
-export const BtnText = styled.div`
+export const BtnText = styled.span`
     display: flex;
     align-items: top;
+    font-size: 2.05rem;
+    letter-spacing: 2px;
+    line-height: 2.7rem;
+    font-weight: 500;
+    hyphens: auto;
 
     &:before {
         content: "•";
@@ -100,9 +100,13 @@ export const BtnText = styled.div`
     }
 
     @media ${deviceWidth.mediumMax} {
+        font-size: 1.35rem;
+        line-height: 2.5rem;
+        letter-spacing: 1px;
+
         &:before {
-            font-size: 3.5rem;
-            width: 3rem;
+            font-size: 1.4rem;
+            margin-left: 0rem;
         }
     }
 
@@ -151,6 +155,16 @@ export const CardBtn = styled.button`
         }
     }
 
+    @media ${deviceWidth.mediumMax} {
+        margin-bottom: 10px;
+
+        &:first-of-type {
+            ${BtnTextContainer} {
+                width: 385px;
+            }
+        }
+    }
+
     opacity: ${props => props.isActive ? "50%" : "initial"};
 
     @media ${deviceWidth.mediumMax} {
@@ -160,6 +174,15 @@ export const CardBtn = styled.button`
         &:first-of-type {
             grid-row: span 1;
             grid-column: span 2;
+
+            ${BtnText} {
+                margin-left: 20px;
+
+                &:before {
+                    min-width: 24px;
+                    max-width: 24px;
+                }
+            }
             
             ${BtnIcon} {
                 width: 90px;
