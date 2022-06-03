@@ -1,6 +1,6 @@
 # Test Project
 
-Note: Requires Node.js installion.
+Note: Requires Node.js installed.
 
 ## Getting Started
 
