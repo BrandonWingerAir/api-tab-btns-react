@@ -29,7 +29,6 @@ function FontSelector() {
     const [fontButtons, setFontButtons] = useState([]);
     const [buyFontText, setBuyFontText] = useState();
 
-    // Production Configuration:
     useEffect(() => {
       setTabState({ loading: true });
     

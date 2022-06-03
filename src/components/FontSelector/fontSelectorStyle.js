@@ -54,7 +54,7 @@ export const TabsHeader = styled.div`
     }
 `;
 
-export const TabsTitle = styled.h1`
+export const TabsTitle = styled.h3`
     margin-left: 25px;
     margin: 0;
     flex-grow: 7;

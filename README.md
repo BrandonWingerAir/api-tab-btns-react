@@ -1,5 +1,7 @@
 # Test Project
 
+Note: Requires Node.js installion.
+
 ## Getting Started
 
 In the project directory, you can run:
